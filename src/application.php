@@ -12,6 +12,7 @@ use Composer\Console\Application as base_application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Composer\Factory;
 
 class application extends base_application
 {
