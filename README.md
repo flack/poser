@@ -17,6 +17,27 @@ of installed packages into `/usr/local/bin`. This means
 command-line utilities of Composer packages will be available
 in the shell the same way PEAR packages were.
 
+Usage
+-----
+
+globposer is a simple wrapper around Composer's main application file,
+so the command line syntax and all behavior is exactly the same,
+except that the `global` command is automatically prepended (which
+means that you cannot use globposer to manage project-level
+dependencies).
+
+This line for example will install PHPUnit and make `phpunit` available in `PATH`:
+
+```bash
+globposer require phpunit/phpunit
+```
+
+This line will uninstall PHPUnit and remove the link:
+
+```bash
+globposer remove phpunit/phpunit
+```
+
 Installation
 ------------
 
@@ -58,27 +79,6 @@ php composer.phar global require openpsa/globposer:dev-master
 You will have to link `globposer` into your `PATH` yourself, because
 there is no way to do this automatically without having a dedicated
 installer package, which would be doable, but seems a bit excessive right now.
-
-Usage
------
-
-globposer is a simple wrapper around Composer's main application file,
-so the command line syntax and all behavior is exactly the same,
-except that the `global` command is automatically prepended (which
-means that you cannot use globposer to manage project-level
-dependencies).
-
-This line for example will install PHPUnit and make `phpunit` available in `PATH`:
-
-```bash
-globposer require phpunit/phpunit
-```
-
-This line will uninstall PHPUnit and remove the link:
-
-```bash
-globposer remove phpunit/phpunit
-```
 
 Caveats
 -------
