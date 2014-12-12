@@ -1,9 +1,11 @@
 globposer
 =========
 
-Composer is a great tool, but let's face it: Its idea of "global" is a bit different from what you might expect: Installing something globally puts it in Composer's home directory, but nowhere in your `PATH`, like good old PEAR did.
+globposer is a small utility that modifies Composer's linking behavior for CLI executables, so that they are automatically available in `PATH`.
 
-globposer does just that: It automatically symlinks the bin files of "globally" installed packages into `/usr/local/bin`. This means command-line utilities of Composer packages will be available in the shell the same way PEAR packages were. 
+Composer is a great tool, but let's face it: Its idea of "global" is a bit different from what you might expect: Installing a package globally only means it ends up in Composer's home directory, so to call CLI tools, you still have to type the entire path or create a symlink to a directory in your `PATH` manually.
+
+globposer does that for you: It automatically symlinks the bin files of "globally" installed packages into `/usr/local/bin`. This means command-line utilities of Composer packages will be available in the shell the same way PEAR packages were. 
 
 Installation
 ------------
