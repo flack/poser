@@ -9,7 +9,6 @@
 namespace openpsa\globposer;
 
 use Composer\IO\IOInterface;
-use Composer\Factory;
 
 class linker
 {
@@ -27,9 +26,9 @@ class linker
      *
      * @param IOInterface $io Composer IO interface
      */
-    public function __construct(IOInterface $io)
+    public function __construct(IOInterface $io, $vendor_bin)
     {
-        $this->vendor_bin = Factory::createConfig()->get('home') . '/vendor/bin';
+        $this->vendor_bin = $vendor_bin;
         $this->io = $io;
     }
 

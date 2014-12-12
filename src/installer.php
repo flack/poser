@@ -21,7 +21,7 @@ class installer
      */
     public static function setup(Event $event)
     {
-        $linker = new linker($event->getIO());
+        $linker = new linker($event->getIO(), dirname(__DIR__) . '/bin');
         $linker->link('globposer');
     }
 }

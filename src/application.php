@@ -37,7 +37,7 @@ class application extends base_application
             $added = array_diff($new_files, $this->binfiles);
             $removed = array_diff($this->binfiles, $new_files);
 
-            $linker = new linker($this->io);
+            $linker = new linker($this->io, Factory::createConfig()->get('home') . '/vendor/bin');
             foreach ($added as $file)
             {
                 $linker->link($file);
