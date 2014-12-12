@@ -12,11 +12,7 @@ use Composer\Script\Event;
 
 class installer
 {
-
     /**
-     * Links package resources to appropriate places and creates
-     * the required directories inside the project directory
-     *
      * @param Event $event The event we're called from
      */
     public static function setup(Event $event)
