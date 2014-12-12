@@ -13,6 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Composer\Factory;
+use Symfony\Component\Console\Input\StringInput;
 
 class application extends base_application
 {
@@ -25,10 +26,13 @@ class application extends base_application
      */
     public function doRun(InputInterface $input, OutputInterface $output)
     {
-        if ($this->getCommandName($input) == 'global')
+        if (   $this->getCommandName($input) != 'global'
+            && $this->binfiles === null) // This is to prevent infinite recursion
         {
+            $input = new StringInput('global ' . $input);
             $this->binfiles = $this->list_binfiles();
         }
+
         $result = parent::doRun($input, $output);
 
         if (is_array($this->binfiles))
