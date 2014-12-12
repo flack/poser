@@ -1,10 +1,8 @@
 poser
 =========
 
-poser is a modified version of Composer for globally installed
-packages. It changes the linking behavior for CLI executables,
-so that they are automatically available in `PATH`. Think of it as
-a replacement for Composer's `global` command
+poser is a proxy for Composer's `global` command that makes CLI executables
+automatically available in `PATH`.
 
 Composer is a great tool, but let's face it: Its idea of "global" is a
 bit different from what you might expect: Installing a package
@@ -20,22 +18,18 @@ in the shell the same way PEAR packages were.
 Usage
 -----
 
-poser is a simple proxy around Composer's main application file,
-so the command line syntax and all behavior is exactly the same,
-except that the `global` command is automatically prepended (which
-means that you cannot use poser to manage project-level
-dependencies).
-
-This line for example will install PHPUnit and make `phpunit` available in `PATH`:
+The command line syntax and all behavior is exactly as they are in Composer,
+except that the `global` command is automatically prepended:
 
 ```bash
+# Install PHPUnit and create symlink for phpunit
 poser require phpunit/phpunit
-```
 
-This line will uninstall PHPUnit and remove the link:
-
-```bash
+# Install PHPUnit and create symlink for phpunit
 poser remove phpunit/phpunit
+
+# You can use other commands and arguments as in Composer
+poser show --installed
 ```
 
 Installation
