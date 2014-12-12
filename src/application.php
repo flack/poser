@@ -17,8 +17,6 @@ use Symfony\Component\Console\Input\StringInput;
 
 class application extends base_application
 {
-    private $readonly_behavior;
-
     private $binfiles = null;
 
     /**

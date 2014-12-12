@@ -22,6 +22,8 @@ class linker
 
     private $vendor_bin;
 
+    private $readonly_behavior;
+
     /**
      *
      * @param IOInterface $io Composer IO interface
