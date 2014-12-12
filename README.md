@@ -62,3 +62,4 @@ globposer is a quickly-written proof of concept, because I expect that the Compo
  - `/usr/local/bin` is hardcoded ATM, but it could be made configurable with relatively little effort.
  - Windows is not supported currently. I guess it could be made to work, so pull requests are welcome
  - normal Unix file permissions still apply. So if you are installing something as root, Composer's home directory will be `/root/.composer`, which is by default not readable, and thus the links in the `PATH` will not be available to other users on the same machine (like, say, a CI server agent).
+ - if you uninstall globposer (via composer or by deleting the git repo), you will have to remove the `globposer` symlink in `/usr/local/bin` manually
