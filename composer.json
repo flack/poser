@@ -1,5 +1,5 @@
 {
-    "name": "openpsa/globposer",
+    "name": "openpsa/poser",
     "description": "Install CLI executables from Composer packages globally",
     "keywords": ["composer", "console"],
     "license": "LGPL",
@@ -13,16 +13,16 @@
     "require": {
         "composer/composer": "~1.0.0-alpha9"
     },
-    "bin": ["bin/globposer"],
+    "bin": ["bin/poser"],
     "scripts": {
         "post-install-cmd": [
-            "openpsa\\globposer\\installer::setup"
+            "openpsa\\poser\\installer::setup"
         ],
         "post-update-cmd": [
-            "openpsa\\globposer\\installer::setup"
+            "openpsa\\poser\\installer::setup"
         ]
     },
     "autoload": {
-	    "psr-4": { "openpsa\\globposer\\": "src/" }
+	    "psr-4": { "openpsa\\poser\\": "src/" }
     }
 }

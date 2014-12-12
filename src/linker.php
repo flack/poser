@@ -1,12 +1,12 @@
 <?php
 /**
- * @package openpsa.globposer
+ * @package openpsa.poser
  * @author CONTENT CONTROL http://www.contentcontrol-berlin.de/
  * @copyright CONTENT CONTROL http://www.contentcontrol-berlin.de/
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License
  */
 
-namespace openpsa\globposer;
+namespace openpsa\poser;
 
 use Composer\IO\IOInterface;
 
