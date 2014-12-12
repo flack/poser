@@ -1,6 +1,6 @@
 {
     "name": "openpsa/globposer",
-    "description": "Install Composer bins globally",
+    "description": "Install CLI executables from Composer packages globally",
     "keywords": ["composer", "console"],
     "license": "LGPL",
     "authors": [
