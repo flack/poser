@@ -23,7 +23,7 @@ Installation
 ### From git
 
 Clone this repo, change into the main directory, and run composer:
-```
+```bash
 git clone https://github.com/flack/globposer.git
 cd globposer
 php composer.phar install
@@ -38,7 +38,7 @@ First, you must add `"minimum-stability": "alpha"` to `composer.json`
 in Composer's home directory (typically `/home/[username]/.composer`
 on Linux). If the file doesn't exist yet, create one with this content:
 
-```
+```json
 {
     "minimum-stability": "alpha",
     "require": {
@@ -51,7 +51,7 @@ not meet its own default `minimum-stability` requirement of `stable`..)
 
 Afterwards, you can use Composer to install globposer globally:
 
-```
+```bash
 php composer.phar global require openpsa/globposer:dev-master
 ```
 
@@ -70,13 +70,13 @@ dependencies).
 
 This line for example will install PHPUnit and make `phpunit` available in `PATH`:
 
-```
+```bash
 globposer require phpunit/phpunit
 ```
 
 This line will uninstall PHPUnit and remove the link:
 
-```
+```bash
 globposer remove phpunit/phpunit
 ```
 
