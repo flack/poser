@@ -1,0 +1,28 @@
+{
+    "name": "openpsa/globposer",
+    "description": "Install Composer bins globally",
+    "keywords": ["composer", "console"],
+    "license": "LGPL",
+    "authors": [
+        {
+            "name": "Andreas Flack",
+            "email": "flack@contentcontrol-berlin.de",
+            "homepage": "http://www.contentcontrol-berlin.de/"
+        }
+    ],
+    "require": {
+        "composer/composer": "~1.0.0-alpha9"
+    },
+    "bin": ["bin/globposer"],
+    "scripts": {
+        "post-install-cmd": [
+            "openpsa\\globposer\\installer::setup"
+        ],
+        "post-update-cmd": [
+            "openpsa\\globposer\\installer::setup"
+        ]
+    },
+    "autoload": {
+	    "psr-4": { "openpsa\\globposer\\": "src/" }
+    }
+}
