@@ -23,7 +23,7 @@ Usage
 -----
 
 The command line syntax and all behavior is exactly as they are in Composer,
-except that the `global` command is is currently forbidden. Not so much because
+except that the `global` command is currently forbidden. Not so much because
 it would be impossible to implement, but rather because it doesn't really make
 much sense to use poser for that. It is meant as a specialised version of
 Composer for packages you want to install system-wide:
@@ -50,7 +50,7 @@ git clone https://github.com/flack/poser.git
 cd poser
 php composer.phar install
 ```
-Afterwards, `poser` will be available in your `PATH` and you ccan start installing
+Afterwards, `poser` will be available in your `PATH` and you can start installing
 packages.
 
 It may seem a bit cumbersome to keep the git repo around, but the alternative
