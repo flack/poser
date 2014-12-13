@@ -17,7 +17,11 @@ use Composer\Util\Filesystem;
 
 class application extends base_application
 {
-    private $binfiles = null;
+    /**
+     *
+     * @var array
+     */
+    private $binfiles = array();
 
     private $share_dir = '/usr/local/share/poser';
 
@@ -39,8 +43,7 @@ class application extends base_application
 
         $result = parent::doRun($input, $output);
 
-        if (   is_array($this->binfiles)
-            && is_dir($vendor_bin))
+        if (is_dir($vendor_bin))
         {
             $new_files = $this->list_binfiles($vendor_bin);
             $added = array_diff($new_files, $this->binfiles);
