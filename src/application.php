@@ -13,7 +13,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Composer\Factory;
-use Symfony\Component\Console\Input\StringInput;
 use Composer\Util\Filesystem;
 
 class application extends base_application
@@ -37,6 +36,7 @@ class application extends base_application
         $output->writeln('<info>Changed current directory to ' . $this->share_dir . '</info>');
         $vendor_bin = $this->share_dir . '/' . Factory::createConfig()->get('bin-dir');
         $this->binfiles = $this->list_binfiles($vendor_bin);
+
         $result = parent::doRun($input, $output);
 
         if (   is_array($this->binfiles)
