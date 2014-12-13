@@ -14,4 +14,20 @@ class exception extends \Exception
     {
         return new static("You are trying to use poser with Composer's home directory. Why would you do that?");
     }
+
+    public static function nonexistent_target($target_path)
+    {
+        return new static('Cannot link to nonexistent path ' . $target_path);
+    }
+
+    public static function php_error($linkname)
+    {
+        $error = error_get_last();
+        return new static('could not link ' . basename($linkname) . ' to ' . dirname($linkname) . ': ' . $error['message']);
+    }
+
+    public static function shell_error($output)
+    {
+        return new static('Failed to link ' . basename($linkname) . ' to ' . dirname($linkname) . ":\n" . implode("\n", $output));
+    }
 }

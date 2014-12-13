@@ -41,7 +41,7 @@ class linker
 
         if (!file_exists($target_path))
         {
-            throw new \Exception('Cannot link to nonexistent path ' . $target_path);
+            throw exception::nonexistent_target($target_path);
         }
 
         if (is_link($linkname))
@@ -81,28 +81,26 @@ class linker
             switch ($this->readonly_behavior)
             {
                 case 'a':
-                    throw new \Exception('Aborted by user command');
+                    throw new exception('Aborted by user command');
                 case 'i':
                     $this->io->write('<info>Skipped linking ' . basename($linkname) . ' to ' . dirname($linkname) . '</info>');
                     return;
                 case '':
                 case 's':
+                default:
                     exec('sudo ln -s ' . escapeshellarg($target_path) . ' ' . escapeshellarg($linkname), $output, $return);
                     if ($return !== 0)
                     {
-                        throw new \Exception('Failed to link ' . basename($linkname) . ' to ' . dirname($linkname));
+                        throw exception::shell_error($linkname, $output);
                     }
                     break;
-                default:
-                    throw new \Exception('Invalid input');
             }
         }
         else
         {
             if (!@symlink($target_path, $linkname))
             {
-                $error = error_get_last();
-                throw new \Exception('could not link ' . basename($linkname) . ' to ' . dirname($linkname) . ': ' . $error['message']);
+                throw exception::php_error($linkname);
             }
         }
         if ($this->io->isVerbose())
