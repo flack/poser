@@ -90,12 +90,12 @@ team will at some point come up with an implementation of its behavior directly
 in the core. This is just meant to hold us over until then, so there are 
 some limitations:
 
- - `/usr/local/bin` and `/usr/local/share/poser` are hardcoded ATM, but they could be
-   made configurable with relatively little effort.
+ - `/usr/local/bin` and `/usr/local/share/poser` are hardcoded ATM (but they could be
+   made configurable with relatively little effort)
  - Windows is not supported currently. I guess it could be made to work, so pull 
    requests are welcome
- - obviously, normal Unix file permission ruless still apply. So you should make 
+ - obviously, normal Unix file permission rules still apply. So you should make 
    sure that all users that are supposed to use globally installed utilities actually
-   have access to `/usr/local/share/poser`.
+   have access to `/usr/local/share/poser`
  - if you uninstall poser (via composer or by deleting the git repo), you will have to 
    remove the `poser` symlink in `/usr/local/bin` manually
