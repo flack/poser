@@ -25,7 +25,7 @@ except that the `global` command is automatically prepended:
 # Install PHPUnit and create symlink for phpunit
 poser require phpunit/phpunit
 
-# Install PHPUnit and create symlink for phpunit
+# Uninstall PHPUnit and remove symlink
 poser remove phpunit/phpunit
 
 # You can use other commands and arguments as in Composer
