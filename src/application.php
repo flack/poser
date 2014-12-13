@@ -14,32 +14,39 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Composer\Factory;
 use Symfony\Component\Console\Input\StringInput;
+use Composer\Util\Filesystem;
 
 class application extends base_application
 {
     private $binfiles = null;
+
+    private $share_dir = '/usr/local/share/poser';
 
     /**
      * @inheritDoc
      */
     public function doRun(InputInterface $input, OutputInterface $output)
     {
-        if (   $this->getCommandName($input) != 'global'
-            && $this->binfiles === null) // This is to prevent infinite recursion
+        if ($this->getCommandName($input) == 'global')
         {
-            $input = new StringInput('global ' . $input);
-            $this->binfiles = $this->list_binfiles();
+            throw exception::global_command_unsupported();
         }
-
+        $fs = new Filesystem;
+        $fs->ensureDirectoryExists($this->share_dir);
+        chdir($this->share_dir);
+        $output->writeln('<info>Changed current directory to ' . $this->share_dir . '</info>');
+        $vendor_bin = $this->share_dir . '/' . Factory::createConfig()->get('bin-dir');
+        $this->binfiles = $this->list_binfiles($vendor_bin);
         $result = parent::doRun($input, $output);
 
-        if (is_array($this->binfiles))
+        if (   is_array($this->binfiles)
+            && is_dir($vendor_bin))
         {
-            $new_files = $this->list_binfiles();
+            $new_files = $this->list_binfiles($vendor_bin);
             $added = array_diff($new_files, $this->binfiles);
             $removed = array_diff($this->binfiles, $new_files);
 
-            $linker = new linker($this->io, Factory::createConfig()->get('home') . '/vendor/bin');
+            $linker = new linker($this->io, $vendor_bin);
             foreach ($added as $file)
             {
                 $linker->link($file);
@@ -52,16 +59,15 @@ class application extends base_application
         return $result;
     }
 
-    private function list_binfiles()
+    private function list_binfiles($vendor_bin)
     {
         $files = array();
-        $composer_home = Factory::createConfig()->get('home') . '/vendor/bin';
-        if (!is_dir($composer_home))
+        if (!is_dir($vendor_bin))
         {
             return $files;
         }
 
-        $iterator = new \DirectoryIterator($composer_home);
+        $iterator = new \DirectoryIterator($vendor_bin);
         foreach ($iterator as $child)
         {
             if (   $child->getType() !== 'dir'

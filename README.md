@@ -1,25 +1,32 @@
 poser
 =========
 
-poser is a proxy for Composer's `global` command that makes CLI executables
-automatically available in `PATH`.
+poser is an alternative implementation of Composer's `global` command 
+that installs packages in a system-wide location. CLI executables from 
+packages are automatically available in `PATH`, just like they were in PEAR.
 
-Composer is a great tool, but let's face it: Its idea of "global" is a
-bit different from what you might expect: Installing a package
-globally only means it ends up in Composer's home directory, so
-to call CLI tools, you still have to type the entire path or create a
-symlink to a directory in your `PATH` manually.
+Composer is a great tool, but let's face it: Its `global` command is
+slightly mis-named: Packages installed with it end up in Composer's 
+home directory, which is derived from the current user's home directory.
+So "global" here really means user-level as opposed to system-level, which
+is what PEAR did.
 
-poser does that for you: It automatically symlinks the bin files
+poser attempts to bridge that gap: It installs packages into a single 
+location (`/usr/local/share/poser`) regardless of which user triggered the 
+command, and it automatically symlinks the bin files
 of installed packages into `/usr/local/bin`. This means
 command-line utilities of Composer packages will be available
-in the shell the same way PEAR packages were.
+in the shell immediately to all users, without any fiddling in `/etc/profile` 
+or other fun places in the bowels of the OS.
 
 Usage
 -----
 
 The command line syntax and all behavior is exactly as they are in Composer,
-except that the `global` command is automatically prepended:
+except that the `global` command is is currently forbidden. Not so much because
+it would be impossible to implement, but rather because it doesn't really make
+much sense to use poser for that. It is meant as a specialised version of
+Composer for packages you want to install system-wide:
 
 ```bash
 # Install PHPUnit and create symlink for phpunit
@@ -43,8 +50,10 @@ git clone https://github.com/flack/poser.git
 cd poser
 php composer.phar install
 ```
-Afterwards, `poser` will be available in your `PATH`. It may seem
-a bit cumbersome to keep the git repo around, but the alternative
+Afterwards, `poser` will be available in your `PATH` and you ccan start installing
+packages.
+
+It may seem a bit cumbersome to keep the git repo around, but the alternative
 currently looks like this:
 
 ### Via Composer
@@ -76,9 +85,17 @@ installer package, which would be doable, but seems a bit excessive right now.
 
 Caveats
 -------
-poser is a quickly-written proof of concept, because I expect that the Composer team will at some point come up with an implementation of its behavior directly in the core. This is just meant to hold us over until then, so there are some limitations:
+poser is a quickly-written proof of concept, because I expect that the Composer 
+team will at some point come up with an implementation of its behavior directly 
+in the core. This is just meant to hold us over until then, so there are 
+some limitations:
 
- - `/usr/local/bin` is hardcoded ATM, but it could be made configurable with relatively little effort.
- - Windows is not supported currently. I guess it could be made to work, so pull requests are welcome
- - normal Unix file permissions still apply. So if you are installing something as root, Composer's home directory will be `/root/.composer`, which is by default not readable, and thus the links in the `PATH` will not be available to other users on the same machine (like, say, a CI server agent).
- - if you uninstall poser (via composer or by deleting the git repo), you will have to remove the `poser` symlink in `/usr/local/bin` manually
+ - `/usr/local/bin` and `/usr/local/share/poser` are hardcoded ATM, but they could be
+   made configurable with relatively little effort.
+ - Windows is not supported currently. I guess it could be made to work, so pull 
+   requests are welcome
+ - obviously, normal Unix file permission ruless still apply. So you should make 
+   sure that all users that are supposed to use globally installed utilities actually
+   have access to `/usr/local/share/poser`.
+ - if you uninstall poser (via composer or by deleting the git repo), you will have to 
+   remove the `poser` symlink in `/usr/local/bin` manually
