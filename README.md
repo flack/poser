@@ -1,7 +1,7 @@
 poser
 =========
 
-poser is an alternative implementation of Composer's `global` command 
+poser is an alternative implementation of [Composer](https://getcomposer.org/)'s `global` command 
 that installs packages in a system-wide location. CLI executables from 
 packages are automatically available in `PATH`, just like they were in PEAR.
 
@@ -22,11 +22,12 @@ or other fun places in the bowels of the OS.
 Usage
 -----
 
-The command line syntax and all behavior is exactly as they are in Composer,
-except that the `global` command is currently forbidden. Not so much because
-it would be impossible to implement, but rather because it doesn't really make
-much sense to use poser for that. It is meant as a specialised version of
-Composer for packages you want to install system-wide:
+The command line syntax and all behavior is exactly as they are in Composer, so 
+you can use their [documentation](https://getcomposer.org/) to get an overview
+of all commands. The only difference is that the `global` command is currently 
+forbidden. Not so much because it would be impossible to implement, but rather
+because it doesn't really make much sense to use poser for that. It is meant 
+as a specialised version of Composer for packages you want to install system-wide:
 
 ```bash
 # Install PHPUnit and create symlink for phpunit
