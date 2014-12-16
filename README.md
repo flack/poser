@@ -23,7 +23,7 @@ Usage
 -----
 
 The command line syntax and all behavior is exactly as they are in Composer, so 
-you can use their [documentation](https://getcomposer.org/) to get an overview
+you can use their [documentation](https://getcomposer.org/doc/03-cli.md) to get an overview
 of all commands. The only difference is that the `global` command is currently 
 forbidden. Not so much because it would be impossible to implement, but rather
 because it doesn't really make much sense to use poser for that. It is meant 
