@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "composer/composer": "~1.0.0-alpha9"
+        "composer/composer": "~1.0.0-alpha10"
     },
     "bin": ["bin/poser"],
     "scripts": {
