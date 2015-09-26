@@ -38,7 +38,7 @@ class application extends base_application
         $fs->ensureDirectoryExists($this->share_dir);
         chdir($this->share_dir);
         $output->writeln('<info>Changed current directory to ' . $this->share_dir . '</info>');
-        $vendor_bin = $this->share_dir . '/' . Factory::createConfig()->get('bin-dir');
+        $vendor_bin = Factory::createConfig()->get('bin-dir');
         $this->binfiles = $this->list_binfiles($vendor_bin);
 
         $result = parent::doRun($input, $output);
