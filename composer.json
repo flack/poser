@@ -2,7 +2,7 @@
     "name": "openpsa/poser",
     "description": "Install CLI executables from Composer packages globally",
     "keywords": ["composer", "console"],
-    "license": "LGPL",
+    "license": "LGPL-2.1-or-later",
     "authors": [
         {
             "name": "Andreas Flack",
@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "composer/composer": "~1.0.0-alpha10"
+        "composer/composer": "^1.0"
     },
     "bin": ["bin/poser"],
     "scripts": {
